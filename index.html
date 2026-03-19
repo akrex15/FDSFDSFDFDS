@@ -72,7 +72,7 @@ canvas{display:block;border-radius:12px}
 <script>
 // ═══════ AUDIO ═══════
 var AC=window.AudioContext||window.webkitAudioContext,ac;
-function ia(){if(!ac)try{ac=new AC()}catch(e){}}
+function ia(){if(!ac)try{ac=new AC()}catch(e){}if(ac&&ac.state==='suspended')ac.resume();}
 
 function bpop(pitch,vol){
   ia();if(!ac)return;
