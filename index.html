@@ -836,9 +836,14 @@ function gameOver(timeOut=false){
   document.getElementById('oSub').textContent=nw?'NEW BEST!':'Best: '+bestScore;
 
   if(timeOut){
+    var gcEl=document.getElementById('gc');
+    var gcRect=gcEl.getBoundingClientRect();
+    var rowY=gcRect.top+row*(TS+GP);
     var fl=document.getElementById('flash');
-    fl.style.background='#f87171';fl.style.opacity='0.4';
-    setTimeout(function(){fl.style.opacity='0'},600);
+    fl.style.background='rgba(245,158,11,0.5)';
+    fl.style.clipPath='inset('+rowY+'px 0px '+(window.innerHeight-rowY-TS)+'px 0px)';
+    fl.style.opacity='1';
+    setTimeout(function(){fl.style.opacity='0';fl.style.clipPath='none';},250);
   }
 
   document.getElementById('scrOver').classList.add('active');updateHUD();
